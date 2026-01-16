@@ -1,0 +1,13 @@
+package edu.pga.psp.magiccollectionspring;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class MagicCollectionSpringApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
