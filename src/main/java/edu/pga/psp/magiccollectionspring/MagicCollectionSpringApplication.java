@@ -19,7 +19,7 @@ public class MagicCollectionSpringApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("--- Iniciando Magic Collection con Spring Boot ---");
-        mainMenu.showMenu();
+        //mainMenu.showMenu();
     }
 
 }
