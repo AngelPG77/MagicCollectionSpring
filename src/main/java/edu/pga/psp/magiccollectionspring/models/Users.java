@@ -23,4 +23,50 @@ public class Users {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Collections> collections = new ArrayList<>();
 
+    // Constructores
+
+    public Users() {
+    }
+
+    public Users(Long id, String username, String password, List<Collections> collections) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.collections = collections;
+    }
+
+    // Getters y Setters
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Collections> getCollections() {
+        return collections;
+    }
+
+    public void setCollections(List<Collections> collections) {
+        this.collections = collections;
+    }
 }

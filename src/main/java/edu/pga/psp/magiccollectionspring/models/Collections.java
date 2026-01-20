@@ -22,4 +22,52 @@ public class Collections {
 
     @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CardYouOwn> cards = new ArrayList<>();
+
+    // Constructores
+
+    public Collections() {
+    }
+
+    public Collections(Long id, String name, Users owner, List<CardYouOwn> cards) {
+        this.id = id;
+        this.name = name;
+        this.owner = owner;
+        this.cards = cards;
+    }
+
+    // Getters y Setters
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Users getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Users owner) {
+        this.owner = owner;
+    }
+
+    public List<CardYouOwn> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<CardYouOwn> cards) {
+        this.cards = cards;
+    }
+
 }
