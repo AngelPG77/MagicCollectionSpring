@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface CollectionsRepository extends JpaRepository<Collections, Long> {
 
-    List<Collections> findByOwner(Users owner);
+    List<Collections> findByOwner_Username(String username);
 
 }

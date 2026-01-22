@@ -12,6 +12,8 @@ public interface CardRepository extends JpaRepository<Card, Long> {
 
     Optional<Card> findByScryfallId(String scryfallId);
 
+    Optional<Card> findByNameIgnoreCase(String name);
+
     List<Card> findByNameContainingIgnoreCaseOrOracleTextContainingIgnoreCase(String name, String oracleText);
 
     List<Card> findBySetCodeIgnoreCase(String setCode);
