@@ -16,9 +16,11 @@ public class CardYouOwn {
     @Column(name = "is_foil", nullable = false)
     private boolean isFoil = false;
 
-    @Column(name = "card_condition", length = 50)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "card_condition", length = 20, nullable = false)
     private String cardCondition;
 
+    @Enumerated(EnumType.STRING)
     @Column(length = 50)
     private String language;
 
