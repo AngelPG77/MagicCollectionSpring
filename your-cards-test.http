@@ -1,10 +1,12 @@
 ### Variables Globales
 @host = http://localhost:8080
 @contentType = application/json
+@auth_token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsImlhdCI6MTc2OTQ1NTQyMiwiZXhwIjoxNzY5NTQxODIyfQ.JiNts3DvuTKtARZKrf4deIsnSVj1m_HNvxEUk6EwoOc
 
 ### PRE-REQUISITO: Crear una colección para usar en este test
 POST {{host}}/collections/create
 Content-Type: {{contentType}}
+Authorization: Bearer {{auth_token}}
 
 {
   "name": "Carpeta de Intercambio"
@@ -18,6 +20,7 @@ Content-Type: {{contentType}}
 # Asumimos que CardRequest necesita cardId (o nombre), collectionId y condition
 POST {{host}}/your-cards/add
 Content-Type: {{contentType}}
+Authorization: Bearer {{auth_token}}
 
 {
   "cardName": "Black Lotus",
@@ -37,6 +40,7 @@ Content-Type: {{contentType}}
 ### 2. Listar cartas de una colección específica
 GET {{host}}/your-cards/collection/{{testCollectionId}}
 Accept: {{contentType}}
+Authorization: Bearer {{auth_token}}
 
 > {%
     client.test("Listar cartas - Estado 200", function() {
@@ -50,6 +54,7 @@ Accept: {{contentType}}
 ### 3. Actualizar el estado de la carta (ej. cambiar condición)
 PUT {{host}}/your-cards/update/{{ownedCardId}}
 Content-Type: {{contentType}}
+Authorization: Bearer {{auth_token}}
 
 {
   "condition": "PLAYED",
@@ -70,6 +75,7 @@ Content-Type: {{contentType}}
 
 ### 4. Eliminar la carta de la colección
 DELETE {{host}}/your-cards/delete/{{ownedCardId}}
+Authorization: Bearer {{auth_token}}
 
 > {%
     client.test("Carta eliminada - Estado 200", function() {
@@ -79,6 +85,7 @@ DELETE {{host}}/your-cards/delete/{{ownedCardId}}
 
 ### LIMPIEZA: Eliminar la colección de prueba
 DELETE {{host}}/collections/delete/{{testCollectionId}}
+Authorization: Bearer {{auth_token}}
 
 > {%
     client.test("Limpieza completada", function() {

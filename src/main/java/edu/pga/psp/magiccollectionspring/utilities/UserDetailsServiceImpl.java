@@ -1,4 +1,4 @@
-package edu.pga.psp.magiccollectionspring.security;
+package edu.pga.psp.magiccollectionspring.utilities;
 
 import edu.pga.psp.magiccollectionspring.models.Users;
 import edu.pga.psp.magiccollectionspring.repository.UsersRepository;

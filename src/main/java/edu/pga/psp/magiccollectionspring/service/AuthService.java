@@ -1,8 +1,9 @@
-package edu.pga.psp.magiccollectionspring.security;
+package edu.pga.psp.magiccollectionspring.service;
 
 import edu.pga.psp.magiccollectionspring.models.Users;
 import edu.pga.psp.magiccollectionspring.models.dto.LoginRequest;
 import edu.pga.psp.magiccollectionspring.repository.UsersRepository;
+import edu.pga.psp.magiccollectionspring.utilities.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

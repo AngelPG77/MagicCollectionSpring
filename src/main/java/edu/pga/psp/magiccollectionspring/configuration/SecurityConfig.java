@@ -1,6 +1,6 @@
-package edu.pga.psp.magiccollectionspring;
+package edu.pga.psp.magiccollectionspring.configuration;
 
-import edu.pga.psp.magiccollectionspring.security.JwtFilter;
+import edu.pga.psp.magiccollectionspring.utilities.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +30,10 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
+
+                        //Cards
+                        .requestMatchers("/cards/**").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

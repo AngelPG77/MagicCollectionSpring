@@ -1,4 +1,4 @@
-package edu.pga.psp.magiccollectionspring.security;
+package edu.pga.psp.magiccollectionspring.utilities;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

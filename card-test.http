@@ -1,6 +1,7 @@
 ### Variables Globales
 @host = http://localhost:8080
 @contentType = application/json
+@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsImlhdCI6MTc2OTQ1NjIxMywiZXhwIjoxNzY5NTQyNjEzfQ.9xkNR4Aq3pw2RliHBcSylDC1EuKdzZ2jqYwmLAOgb3Q
 
 ### 1. Buscar una carta por nombre (y guardarla si no existe)
 GET {{host}}/cards/search?name=Black Lotus
@@ -16,6 +17,7 @@ Accept: {{contentType}}
 ### 2. Obtener toda la biblioteca de cartas conocidas
 GET {{host}}/cards/library
 Accept: {{contentType}}
+Authorization: Bearer {{token}}
 
 > {%
     client.test("Biblioteca obtenida - Estado 200", function() {

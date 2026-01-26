@@ -1,4 +1,4 @@
-package edu.pga.psp.magiccollectionspring;
+package edu.pga.psp.magiccollectionspring.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

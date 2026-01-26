@@ -1,4 +1,4 @@
-package edu.pga.psp.magiccollectionspring.security;
+package edu.pga.psp.magiccollectionspring.utilities;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

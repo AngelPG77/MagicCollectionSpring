@@ -1,7 +1,8 @@
-package edu.pga.psp.magiccollectionspring.security;
+package edu.pga.psp.magiccollectionspring.controllers;
 
 import edu.pga.psp.magiccollectionspring.models.Users;
 import edu.pga.psp.magiccollectionspring.models.dto.LoginRequest;
+import edu.pga.psp.magiccollectionspring.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
