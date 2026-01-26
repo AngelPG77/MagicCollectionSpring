@@ -16,7 +16,7 @@ public class AppConfig {
     }
 
     @Bean
-    public RestClient scryfallWebClient() {
+    public RestClient scryfallClient() {
         return RestClient.builder()
                 .baseUrl("https://api.scryfall.com")
                 .defaultHeader(HttpHeaders.USER_AGENT, "MagicCollectionSpring/1.0 (angelpugagomez@gmail.com)")

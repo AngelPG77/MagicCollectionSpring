@@ -1,0 +1,60 @@
+### Variables Globales
+@host = http://localhost:8080
+@contentType = application/json
+# Si usas token, descomenta la siguiente línea:
+# Authorization: Bearer {{auth_token}}
+
+### 1. Crear una nueva colección
+POST {{host}}/collections/create
+Content-Type: {{contentType}}
+
+{
+  "name": "Mi Mazo Principal"
+}
+
+> {%
+    client.test("Colección creada - Estado 200", function() {
+        client.assert(response.status === 200, "Error al crear colección");
+    });
+    // Guardamos el ID de la colección creada
+    client.global.set("collectionId", response.body.id);
+%}
+
+### 2. Listar todas las colecciones del usuario
+GET {{host}}/collections/all
+Accept: {{contentType}}
+
+> {%
+    client.test("Listar colecciones - Estado 200", function() {
+        client.assert(response.status === 200, "Error al listar colecciones");
+    });
+%}
+
+### 3. Actualizar el nombre de la colección
+PUT {{host}}/collections/update/{{collectionId}}
+Content-Type: {{contentType}}
+
+{
+  "name": "Mazo Actualizado"
+}
+
+> {%
+    client.test("Colección actualizada - Estado 200", function() {
+        client.assert(response.status === 200, "Error al actualizar colección");
+    });
+    client.test("Nombre cambiado", function() {
+        client.assert(response.body.name === "Mazo Actualizado", "El nombre no cambió");
+    });
+%}
+
+### 4. Eliminar la colección
+DELETE {{host}}/collections/delete/{{collectionId}}
+
+> {%
+    client.test("Colección eliminada - Estado 200", function() {
+        client.assert(response.status === 200, "Error al eliminar colección");
+    });
+    client.test("Mensaje de confirmación", function() {
+        client.assert(response.body.message === "Colección eliminada", "Mensaje incorrecto");
+    });
+%}

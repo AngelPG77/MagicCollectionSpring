@@ -1,5 +1,7 @@
 package edu.pga.psp.magiccollectionspring.models;
 
+import edu.pga.psp.magiccollectionspring.models.enums.CardCondition;
+import edu.pga.psp.magiccollectionspring.models.enums.Language;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,11 +20,11 @@ public class CardYouOwn {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "card_condition", length = 20, nullable = false)
-    private String cardCondition;
+    private CardCondition cardCondition;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 50)
-    private String language;
+    private Language language;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "collection_id", nullable = false)
@@ -37,7 +39,7 @@ public class CardYouOwn {
     public CardYouOwn() {
     }
 
-    public CardYouOwn(Long id, int quantity, boolean isFoil, String cardCondition, String language, Collections collection, Card cardMasterData) {
+    public CardYouOwn(Long id, int quantity, boolean isFoil, CardCondition cardCondition, Language language, Collections collection, Card cardMasterData) {
         this.id = id;
         this.quantity = quantity;
         this.isFoil = isFoil;
@@ -74,19 +76,19 @@ public class CardYouOwn {
         isFoil = foil;
     }
 
-    public String getCardCondition() {
+    public CardCondition getCardCondition() {
         return cardCondition;
     }
 
-    public void setCardCondition(String cardCondition) {
+    public void setCardCondition(CardCondition cardCondition) {
         this.cardCondition = cardCondition;
     }
 
-    public String getLanguage() {
+    public Language getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
+    public void setLanguage(Language language) {
         this.language = language;
     }
 

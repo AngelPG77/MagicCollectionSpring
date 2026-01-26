@@ -20,7 +20,13 @@ public class CardService {
 
     public Card getOrFetchCard(String cardName) {
         return cardRepository.findByNameIgnoreCase(cardName)
-                .orElseGet(() -> fetchFromScryfall(cardName));
+                .orElseGet(() -> {
+                    Card fetched = fetchFromScryfall(cardName);
+                    if (fetched == null) {
+                        throw new RuntimeException("La carta '" + cardName + "' no existe en la base de datos de Scryfall.");
+                    }
+                    return fetched;
+                });
     }
 
     private Card fetchFromScryfall(String cardName) {
@@ -31,6 +37,9 @@ public class CardService {
                             .queryParam("exact", cardName)
                             .build())
                     .retrieve()
+                    .onStatus(status -> status.value() == 404, (request, response) -> {
+                        throw new RuntimeException("Carta no encontrada en Scryfall");
+                    })
                     .body(CardScryfallDTO.class);
 
             if (dto != null) {

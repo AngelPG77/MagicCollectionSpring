@@ -5,7 +5,7 @@ public enum CardCondition {
     NEAR_MINT("Near Mint"),
     EXCELLENT("Excellent"),
     GOOD("Good"),
-    LIGHT_PLAYED("Light Played"),
+    LIGHTLY_PLAYED("Lightly Played"),
     PLAYED("Played"),
     POOR("Poor");
 
