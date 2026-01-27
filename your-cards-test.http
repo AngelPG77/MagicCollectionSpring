@@ -1,7 +1,9 @@
 ### Variables Globales
 @host = http://localhost:8080
 @contentType = application/json
-@auth_token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsImlhdCI6MTc2OTQ1NTQyMiwiZXhwIjoxNzY5NTQxODIyfQ.JiNts3DvuTKtARZKrf4deIsnSVj1m_HNvxEUk6EwoOc
+@auth_token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZW1vIiwiaWF0IjoxNzY5NTEwMTA1LCJleHAiOjE3Njk1OTY1MDV9.Exo1POHgHCrYHcAlaoCHEJo6fzI-oyp5Xtxcl-z5lFo
+@testCollectionId = 3
+@ownedCardId = 1
 
 ### PRE-REQUISITO: Crear una colección para usar en este test
 POST {{host}}/collections/create
@@ -17,7 +19,6 @@ Authorization: Bearer {{auth_token}}
 %}
 
 ### 1. Añadir una carta a la colección
-# Asumimos que CardRequest necesita cardId (o nombre), collectionId y condition
 POST {{host}}/your-cards/add
 Content-Type: {{contentType}}
 Authorization: Bearer {{auth_token}}
@@ -25,15 +26,16 @@ Authorization: Bearer {{auth_token}}
 {
   "cardName": "Black Lotus",
   "collectionId": {{testCollectionId}},
-  "condition": "NEAR_MINT",
-  "isFoil": false
+  "condition": "Near Mint",
+  "isFoil": true,
+  "language": "español",
+  "quantity": 1
 }
 
 > {%
     client.test("Carta añadida a colección - Estado 200", function() {
         client.assert(response.status === 200, "Error al añadir carta: " + (response.body.error || ""));
     });
-    // Guardamos el ID de la relación (CardOwned)
     client.global.set("ownedCardId", response.body.id);
 %}
 
@@ -66,7 +68,6 @@ Authorization: Bearer {{auth_token}}
         client.assert(response.status === 200, "Error al actualizar carta");
     });
     client.test("Condición cambiada", function() {
-        // Verificamos si devuelve el objeto actualizado
         if (response.body.condition) {
             client.assert(response.body.condition === "PLAYED" || response.body.condition.displayName === "Played", "La condición no cambió");
         }

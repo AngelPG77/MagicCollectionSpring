@@ -50,8 +50,8 @@ public class CardMapper {
         entity.setCardCondition(CardCondition.fromString(request.getCondition()));
         entity.setLanguage(Language.fromCode(request.getLanguage()));
 
-        entity.setQuantity(request.getQuantity());
-        entity.setFoil(request.isFoil());
+        entity.setQuantity(request.getQuantity() != null ? request.getQuantity() : 1);
+        entity.setFoil(request.getIsFoil() != null ? request.getIsFoil() : false);
 
         return entity;
     }
@@ -59,10 +59,21 @@ public class CardMapper {
     public void updateInventoryEntityFromRequest(CardRequest request, CardYouOwn existing) {
         if (request == null || existing == null) return;
 
-        existing.setQuantity(request.getQuantity());
-        existing.setFoil(request.isFoil());
-        existing.setCardCondition(CardCondition.fromString(request.getCondition()));
-        existing.setLanguage(Language.fromCode(request.getLanguage()));
+        if (request.getQuantity() != null) {
+            existing.setQuantity(request.getQuantity());
+        }
+        
+        if (request.getIsFoil() != null) {
+            existing.setFoil(request.getIsFoil());
+        }
+        
+        if (request.getCondition() != null) {
+            existing.setCardCondition(CardCondition.fromString(request.getCondition()));
+        }
+        
+        if (request.getLanguage() != null) {
+            existing.setLanguage(Language.fromCode(request.getLanguage()));
+        }
     }
 
 }

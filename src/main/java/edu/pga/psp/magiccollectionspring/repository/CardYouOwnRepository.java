@@ -16,7 +16,6 @@ import java.util.Optional;
 @Repository
 public interface CardYouOwnRepository extends JpaRepository<CardYouOwn, Long> {
 
-    List<CardYouOwn> findByCollection(Collections collection);
 
     List<CardYouOwn> findByCollection_Id(Long collectionId);
 

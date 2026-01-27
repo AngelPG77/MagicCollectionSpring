@@ -7,8 +7,8 @@ POST {{host}}/auth/register
 Content-Type: {{contentType}}
 
 {
-  "username": "testuser2",
-  "password": "123"
+  "username": "demo",
+  "password": "1234"
 }
 
 > {%
@@ -22,8 +22,8 @@ POST {{host}}/auth/login
 Content-Type: {{contentType}}
 
 {
-  "username": "testuser",
-  "password": "password123"
+  "username": "demo",
+  "password": "1234"
 }
 
 > {%

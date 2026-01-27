@@ -35,6 +35,15 @@ public class CardController {
         return ResponseEntity.ok(cardRepository.findAll());
     }
 
+    @GetMapping("/discover")
+    public ResponseEntity<?> discoverCards(@RequestParam String query) {
+        try {
+            return ResponseEntity.ok(cardService.searchCardsInScryfall(query));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getCardById(@PathVariable Long id) {
         return cardRepository.findById(id)
@@ -43,4 +52,3 @@ public class CardController {
     }
 
 }
-

@@ -3,10 +3,14 @@ package edu.pga.psp.magiccollectionspring.service;
 import edu.pga.psp.magiccollectionspring.mapper.CardMapper;
 import edu.pga.psp.magiccollectionspring.models.Card;
 import edu.pga.psp.magiccollectionspring.models.dto.CardScryfallDTO;
+import edu.pga.psp.magiccollectionspring.models.dto.ScryfallSearchResponse;
 import edu.pga.psp.magiccollectionspring.repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
+
+import java.util.Collections;
+import java.util.List;
 
 
 @Service
@@ -49,5 +53,24 @@ public class CardService {
             System.err.println("Error llamando a Scryfall: " + e.getMessage());
         }
         return null;
+    }
+
+    public List<CardScryfallDTO> searchCardsInScryfall(String query) {
+        try {
+            ScryfallSearchResponse response = scryfallClient.get()
+                    .uri(uriBuilder -> uriBuilder
+                            .path("/cards/search")
+                            .queryParam("q", query)
+                            .build())
+                    .retrieve()
+                    .body(ScryfallSearchResponse.class);
+
+            if (response != null && response.getData() != null) {
+                return response.getData();
+            }
+        } catch (Exception e) {
+            System.err.println("Error buscando en Scryfall: " + e.getMessage());
+        }
+        return Collections.emptyList();
     }
 }

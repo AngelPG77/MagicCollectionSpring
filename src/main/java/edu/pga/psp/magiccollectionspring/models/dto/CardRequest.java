@@ -4,9 +4,10 @@ public class CardRequest {
 
     private Long collectionId;
     private String cardName;
-    private int quantity;
+    private Integer quantity;
     private String condition;
-    private boolean foil;
+    private Boolean isFoil;
+
     private String language;
 
     // Constructores
@@ -14,12 +15,12 @@ public class CardRequest {
     public CardRequest() {
     }
 
-    public CardRequest(Long collectionId, String cardName, int quantity, String condition, boolean foil, String language) {
+    public CardRequest(Long collectionId, String cardName, Integer quantity, String condition, Boolean foil, String language) {
         this.collectionId = collectionId;
         this.cardName = cardName;
         this.quantity = quantity;
         this.condition = condition;
-        this.foil = foil;
+        this.isFoil = foil;
         this.language = language;
     }
 
@@ -42,11 +43,11 @@ public class CardRequest {
         this.cardName = cardName;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -58,12 +59,12 @@ public class CardRequest {
         this.condition = condition;
     }
 
-    public boolean isFoil() {
-        return foil;
+    public Boolean getIsFoil() {
+        return isFoil;
     }
 
-    public void setFoil(boolean foil) {
-        this.foil = foil;
+    public void setIsFoil(Boolean isFoil) {
+        this.isFoil = isFoil;
     }
 
     public String getLanguage() {

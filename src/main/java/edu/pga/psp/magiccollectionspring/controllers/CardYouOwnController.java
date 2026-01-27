@@ -51,4 +51,31 @@ public class CardYouOwnController {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         }
     }
+
+    @GetMapping("/search/global")
+    public ResponseEntity<?> searchGlobal(@RequestParam String term) {
+        try {
+            return ResponseEntity.ok(inventoryService.searchGlobal(term));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    @GetMapping("/search/collection/{collectionId}")
+    public ResponseEntity<?> searchInCollection(@PathVariable Long collectionId, @RequestParam String term) {
+        try {
+            return ResponseEntity.ok(inventoryService.searchInCollection(collectionId, term));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    @GetMapping("/search/type")
+    public ResponseEntity<?> searchByType(@RequestParam String type) {
+        try {
+            return ResponseEntity.ok(inventoryService.searchByType(type));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
 }

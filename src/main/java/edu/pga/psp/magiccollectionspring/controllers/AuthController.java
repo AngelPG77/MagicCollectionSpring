@@ -40,10 +40,5 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout() {
-        SecurityContextHolder.clearContext();
-        return ResponseEntity.ok(Map.of("message", "Sesión cerrada"));
-    }
 
 }

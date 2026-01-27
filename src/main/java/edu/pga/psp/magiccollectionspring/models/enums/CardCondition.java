@@ -20,8 +20,11 @@ public enum CardCondition {
     }
 
     public static CardCondition fromString(String condition) {
+        if (condition == null) {
+            throw new IllegalArgumentException("La condición no puede ser nula");
+        }
         for (CardCondition con : CardCondition.values()) {
-            if (con.displayName.equalsIgnoreCase(condition)) {
+            if (con.displayName.equalsIgnoreCase(condition) || con.name().equalsIgnoreCase(condition)) {
                 return con;
             }
         }

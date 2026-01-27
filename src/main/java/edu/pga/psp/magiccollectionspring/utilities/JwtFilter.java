@@ -34,6 +34,7 @@ public class JwtFilter extends OncePerRequestFilter {
         final String jwt;
         final String username;
 
+
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
@@ -44,6 +45,7 @@ public class JwtFilter extends OncePerRequestFilter {
         try {
             username = jwtService.extractUsername(jwt);
         } catch (Exception e) {
+            System.err.println("Error validando token JWT: " + e.getMessage());
             filterChain.doFilter(request, response);
             return;
         }
