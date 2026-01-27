@@ -107,7 +107,7 @@ public class MainMenu {
                     .body(new ParameterizedTypeReference<>() {});
 
             System.out.println("Resultados encontrados: " + cards.size());
-            cards.forEach(c -> System.out.println("- " + c.get("name") + " (" + c.get("set_name") + ")"));
+            cards.forEach(c -> System.out.println("- " + c.get("name")));
         } catch (Exception e) {
             System.out.println("Error buscando: " + e.getMessage());
         }

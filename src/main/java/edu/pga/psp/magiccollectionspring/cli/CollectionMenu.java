@@ -17,6 +17,7 @@ public class CollectionMenu {
     private final Scanner scanner;
     private final RestClient client;
     private final UserSession session;
+    private String currCollName;
 
     @Autowired
     public CollectionMenu(Scanner scanner, UserSession session) {
@@ -27,8 +28,10 @@ public class CollectionMenu {
 
     public void show(Long collId, String collName) {
         boolean back = false;
+        currCollName = collName;
+
         while (!back) {
-            System.out.println("\n--- GESTIONANDO: " + collName + " ---");
+            System.out.println("\n--- GESTIONANDO: " + currCollName + " ---");
             System.out.println("1. Ver cartas");
             System.out.println("2. Añadir carta");
             System.out.println("3. Actualizar carta");
@@ -208,6 +211,7 @@ public class CollectionMenu {
                     .body(Map.of("name", name))
                     .retrieve()
                     .toBodilessEntity();
+            currCollName = name;
             System.out.println(">> Nombre actualizado.");
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
